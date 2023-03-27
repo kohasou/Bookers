@@ -1,15 +1,19 @@
 class BooksController < ApplicationController
-  def top2
-  end
-  
-  def new
-    @book = Book.new
-  end
   
   def create
-    book = Book.new(book_params)
-    book.save
-    redirect_to '/'
+    @book = Book.new(book_params)
+    
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to  books_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @books }
+        
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+  end
+  
   end
   
   def index
