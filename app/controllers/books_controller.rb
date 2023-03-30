@@ -2,18 +2,15 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-
-    respond_to do |format|
+    
       if @book.save
-        format.html { redirect_to  books_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @books }
+        flash[:notice] = "Book was successfully created."
+        redirect_to  books_path
 
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        @books = Book.all
+        render :index
       end
-  end
-
   end
 
   def index
@@ -22,6 +19,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find(params[:id])
   end
 
   def edit
@@ -31,7 +29,8 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to request.referer
+      flash[:notice] = "Book was successfully updated."
+      redirect_to book_path
     else
       render :new
     end
@@ -40,6 +39,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
+    flash[:notice] = "Book was successfully destroyed."
     redirect_to request.referer
   end
 
