@@ -38,10 +38,6 @@ p{
   line-height: 18px;
 }
 
-a{
-  color: #333;
-}
-
 div.field{
   margin-bottom: 10px;
 }
@@ -54,6 +50,6 @@ h4.body{
   margin-bottom: 0;
 }
 
-notice{
-  color: green;
+.link{
+  color: #333;
 }

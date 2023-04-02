@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
       if @book.save
         flash[:notice] = "Book was successfully created."
-        redirect_to  books_path
+        redirect_to  book_path(@book.id)
       
       else
         @books = Book.all
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
       flash[:notice] = "Book was successfully updated."
       redirect_to book_path
     else
-      render :new
+      render :edit
     end
   end
 
