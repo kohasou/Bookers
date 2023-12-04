@@ -1,6 +1,7 @@
 <h1>編集画面</h1>
 
 <%= form_for(@book, url: book_path(@book)) do |f| %>
+<!--エラーメッセージ-->
 <% if @book.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@book.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -13,11 +14,11 @@
       </div>
 <% end %>
 
-    <div>
+    <div><!--タイトル編集-->
         <%= f.label :title %><br>
         <%= f.text_field :title %>
     </div>
-    <div>
+    <div><!--テキスト編集-->
         <%= f.label :body %><br>
         <%= f.text_area :body %>
     </div>
